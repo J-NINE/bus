@@ -16,7 +16,7 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 	else
 		res += i;
 	j = 0;
-	while (src[j] != '\0' && i + 1 < size)
+	while (src[j] && (i + 1 < size))
 	{
 		dest[i] = src[j];
 		i++;
@@ -29,15 +29,15 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 int main(void)
 {
 	const char src1[10]	= "ab";
-	char dest1[10]   = "123";
+	char dest1[10] = "123";
 
-	char src[10]	= "ab";
-	char dest[10]	= "123";
+	char src[10] = "ab";
+	char dest[10] = "123";
 
-	size_t 			nb = 2;
-	unsigned int 	nb2 = 2;
+	//size_t  nb = 2;
+	unsigned int size_2 = 2;
 	//strcat(src, dest);
-	printf("Str: %ld \n", strlcat(dest1, src1, nb));
-	printf("Str: %d", ft_strlcat(dest, src, nb2));
+//	printf("%ld \n", strlcat(dest1, src1, nb));
+	printf("%d", ft_strlcat(dest, src, size_2));
 	return (0);
 }
