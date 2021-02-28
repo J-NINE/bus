@@ -1,28 +1,35 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-char	*ft_strcat(char *s1, const char *s2)
+char *ft_strcat(char *dest, char *src)
 {
-	int i;
-	int j;
+    int len, i, j;
+    //len = ft_strlen(dest) + ft_strlen(src);
+    //char *result = malloc((int)sizeof(char) * len);
 
-	i = 0;
-	while (s1[i] != '\n')
-	{
-		i++;
-	}
-	j = 0;
-	while (s2[j] != '\n')
-	{
-		s1[i] = s2[j];
-		i++;
-		j++;
-	}
-	s1[i] = '\0';
-	return (s1);
+    i = 0;
+    while (dest[i])
+        i++;
+    j = 0;
+      while (src[j])
+    {
+        dest[i] = src[j];
+        i++;
+    j++;
+    }
+    return(dest);
 }
 
-int	main(void)
+int main()
 {
-	printf("%s", ft_strcat("gooah", " aka.gojug"));
-	return 0;
+    char dest[60] = "gojung";
+    char src[] = " gooah";
+    char *string;
+    
+    string = ft_strcat(dest, src);
+    
+    printf("%s", string);
+    
+    return(0);
+    
 }
