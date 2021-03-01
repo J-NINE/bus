@@ -24,15 +24,42 @@ int is_valid(char * base)
 	return 1;
 }
 
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
 void	ft_putnbr_base(int nbr, char *base)
 {
-	
+	int	base_i;
+	int	result[100];
+	int	i;
+
+	i = 0;
+	if (is_valid(base))
+	{
+		if (nbr < 0)
+		{
+			nbr *= (-1);
+			ft_putchar('-');
+		}
+		base_i = -1;
+		while (base[++base_i]);
+		while (nbr)
+		{
+			result[i] = nbr % base_i;
+			nbr = nbr / base_i;
+			i++;
+		}
+		while (--i >= 0)
+			ft_putchar(base[result[i]]);
+	}
 }
 
 int	main(void)
 {	
-	printf("%d ", is_valid("12345678"));
-	printf("%d ", is_valid("1245 asd"));
-	//ft_putnbr_base(42, "0123456789");
+	//printf("%d ", is_valid("12345678"));
+	//printf("%d ", is_valid("1245 asd"));
+	ft_putnbr_base(42, "0123456789");
 	return 0;
 }
