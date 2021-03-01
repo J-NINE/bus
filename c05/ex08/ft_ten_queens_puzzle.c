@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <unistd.h>
 
 void	ft_putchar(char c)
@@ -18,32 +19,31 @@ int	is_possible_place(int table[10], int row, int col)
 	return (1);
 }
 
-void	ft_ten_queens_puzzle_recur(int table[10], int *res, int pos)
+void	ft_ten_queens_puzzle_recur(int table[10], int *res, int row)
 {
 	int i;
-	int i2;
 
-	if (pos == 10)
+	if (row == 10)
 	{
 		*res += 1;
-		i2 = -1;
-		while (++i2 < 10)
-			ft_putchar(table[i2] + '0');
+		i = -1;
+		while (++i < 10)
+			ft_putchar(table[i] + '0');
 		ft_putchar('\n');
 	}
 	else
 	{
 		i = -1;
 		while (++i < 10)
-			if (is_possible_place(table, pos, i))
+			if (is_possible_place(table, row, i))
 			{
-				table[pos] = i;
-				ft_ten_queens_puzzle_recur(table, res, pos + 1);
+				table[row] = i;
+				ft_ten_queens_puzzle_recur(table, res, row + 1);
 			}
 	}
 }
 
-int		ft_ten_queens_puzzle(void)
+int	ft_ten_queens_puzzle(void)
 {
 	int table[10];
 	int i;
@@ -59,6 +59,6 @@ int		ft_ten_queens_puzzle(void)
 
 int	main(void)
 {
-	ft_ten_queens_puzzle();
+	printf("%d ", ft_ten_queens_puzzle());
 	return 0;
 }
