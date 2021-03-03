@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "ft_convert_base.c"
 
 int	ft_strlen(char* str)
 {
@@ -35,7 +36,9 @@ int	is_valid(char *base)
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	if(ft_strlen(base_from) != ft_strlen(base_to))
+	
+	if (!(is_valid(base_from) && is_valid(base_to)))
 		return NULL;
-
+	if(nbr[0] < 0)
+		//minus processing
 }
