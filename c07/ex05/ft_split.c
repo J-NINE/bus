@@ -28,12 +28,14 @@ char *ft_stringparse(char *str, int i, int j)
 	int x;
 	char *result;
 	
-	result = malloc(sizeof(char) * (i - j + 2));
+	result = (char*)malloc(sizeof(char) * (i - j + 2));
 	x = 0;
-	while (i <= j)
+	printf("!");
+	while (j <= i)
 	{
-		result[x] = i;
-		i++;
+		result[x] = j;
+		printf("%d: %d \n", x, j);
+		j++;
 		x++;
 	}
 	result[i] = '0';
@@ -78,14 +80,16 @@ int	main(void)
 {
 	int i;
 	int j;
-	char **result = ft_split("aaaa:bbbb:cccc:dddd:", ":+");
+	//char **result = ft_split("aaaa:bbbb:cccc:dddd:", ":+");
 
-
+	printf("%s", ft_stringparse("01234567", 5, 3));
+	/*
 	i = -1;
 	while (result[++i])
 	{
 		printf("%s\n", result[i]);
 	}
+	*/
 
 	return 0;
 }
