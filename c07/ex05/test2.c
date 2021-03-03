@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int	ft_strchar(char to_find, char *str)
 {
@@ -34,6 +35,8 @@ int	ft_wc(char *str, char *charset)
 
 char *ft_split_word(char **str, char *charset)
 {
+	char *bptr;
+	char *bsptr;
 	char *temp;
 
 	temp = *str;
@@ -54,7 +57,7 @@ char *ft_split_word(char **str, char *charset)
 	return (bptr);
 }
 
-char **ft_split(char *strm char *charset)
+char **ft_split(char *str, char *charset)
 {
 	char **buffer;
 	char **bptr;
@@ -65,9 +68,19 @@ char **ft_split(char *strm char *charset)
 		return (NULL);
 	bptr = buffer;
 	while (i--)
-		if(!(bptr++ = ft_split_w(&str, charset)))
+		if(!(bptr++ = ft_split_word(&str, charset)))
 			return (NULL);
 	*bptr = NULL;
 	return (buffer);
 
+}
+
+int	main(void)
+{
+	int i = -1;
+	char **result = ft_split("aaaa:bbbbLcccc+dddd", "+:");
+	while (result[++i])
+	{
+		printf("%s", result[i]);
+	}
 }
