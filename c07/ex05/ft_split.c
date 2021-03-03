@@ -30,11 +30,11 @@ char *ft_stringparse(char *str, int i, int j)
 	
 	result = (char*)malloc(sizeof(char) * (i - j + 2));
 	x = 0;
-	printf("!");
+	printf("!\n");
 	while (j <= i)
 	{
 		result[x] = str[j];
-		printf("%d: %c \n", x, str[j]);
+		printf("%d: %c \n", x, result[j]);
 		j++;
 		x++;
 	}
@@ -62,13 +62,14 @@ char **ft_split(char *str, char *charset)
 	ctr = 0;
 	while (str[++i])
 	{
-		if (is_charset(str[i], charset))	// 구분자 만나면
-		{	
-			//j부터 i 구분자까지 잘라다가 0 더해서result[ctr]에 집어넣고
+		if (is_charset(str[i], charset))
+		{
 			temp =  ft_stringparse(str, i, j);
 			if(0 != ft_strlen(temp))
 			{
 				*(result + ctr) = malloc(sizeof(char) * ft_strlen(temp));
+				result[ctr] = temp;
+				//printf("%s\n", temp);
 				j = i;
 				ctr++;
 			}
@@ -80,7 +81,18 @@ int	main(void)
 {
 	int i;
 	int j;
-	char **result = ft_split("aaaa:bbbb:cccc", ":+");
+	
+	/*
+	char *str = "aaaa:bbbb+cccc:dddd";
+	i = -1;
+	while (str[++i])
+	{
+		if(is_charset(str[i], "+:"))
+			printf("?");
+	}
+	*/
+
+	char **result = ft_split("aaaa:bbbb+cccc:dddd", ":+");
 
 	//printf("%s", ft_stringparse("01234567", 5, 3));
 	
@@ -89,7 +101,7 @@ int	main(void)
 	{
 		printf("%s\n", result[i]);
 	}
-	
+
 
 	return 0;
 }
