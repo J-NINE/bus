@@ -18,12 +18,7 @@ int	ft_ultimate_range(int **range, int min, int max)
 	}
 	i = 0;
 	while (min < max)
-	{
-		range[i][0] == min;
-		printf("%d", range[i][0]);
-		i++;
-		min++;
-	}
+		range[i++][0] = min++;
 	return (max - min);
 }
 
