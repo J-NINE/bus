@@ -26,7 +26,7 @@ int how_many_tokens(char *str, char *charset)
 	return ctr + 1;
 }
 
-char *ft_parsor(char *str, int start, int i)
+char *ft_parsor(char *str, int start, int end)
 {
 	int i = 0;
 	char *result = malloc(sizeof(char) * (end - start + 1));
@@ -36,6 +36,7 @@ char *ft_parsor(char *str, int start, int i)
 		i++;
 		start++;
 	}
+	printf("%s", result);
 	return result;
 }
 
@@ -46,12 +47,12 @@ char **ft_split(char *str, char *charset)
 	int start = 0;
 	//토큰 갯수 구해서malloc
 	int size = how_many_tokens(str, charset);
-	result = (char **)malloc(sizeof(char*) * size);
+	result = malloc(sizeof(char*) * size);
 
 	while (str[i])
 	{
 		//만약 잘 가다가 구분자 만나면
-		if(is_charset(str[i]))
+		if(is_charset(str[i], charset))
 		{
 			//start부터 i까지 substring만들어서 result[i]에 넣기
 			printf("%s", ft_parsor(str, start, i));
@@ -59,11 +60,12 @@ char **ft_split(char *str, char *charset)
 		}
 		i++;
 	}
-	return null;
+	return NULL;
 
 }
 
 int	main(void)
 {
-	char **result = ft_split("aaaa:vvvv:dddd+ffff", "+:");
+	printf("%s", ft_parsor("asdfg", 1, 3));
+	//char **result = ft_split("aaaa:vvvv:dddd+ffff", "+:");
 }
