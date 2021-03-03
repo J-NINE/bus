@@ -11,11 +11,11 @@ char	*ft_stringparse(char* str, int start, int end)
 	while (start <= end)
 	{
 		result[i] = str[start];
-		printf("result[%d]: %c\n", i, str[start]);
+		printf("result[%d]: %c\n", i, result[i]);
 		i++;
 		start++;
 	}
-	result[i] = '0';
+	//result[i] = '0';
 	return (result);
 }
 
@@ -34,16 +34,24 @@ char	**ft_split(char *str, char *charset)
 	int i;
 	int size;
 	char **result;
-
+	int start = 0;
+	char * temp;
 	size = 0;
 	i = -1;
 	while(str[++i])
-		if(is_charset(str[i]))
+		if(is_charset(str[i], charset))
 			size++;
 	result = (char**)(malloc(sizeof(char*) * (size + 1)));
 	while (str[i])
 	{
-		if(is_charset(str[i]))
+		printf("?");
+		if(is_charset(str[i], charset))
+		{	
+			printf("!");
+			temp = ft_stringparse(str, start, i);
+			printf("%s\n", temp);
+			start = i;
+		}
 
 		i++;
 	}
@@ -52,6 +60,7 @@ char	**ft_split(char *str, char *charset)
 
 int	main(void)
 {
+	char ** result = ft_split("aaaa:bbbb:ccc+dddd", ":+");
 	printf("%s", ft_stringparse("abcdefg", 2, 4));
 	return 0;
 }
