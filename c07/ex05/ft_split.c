@@ -28,17 +28,17 @@ char *ft_stringparse(char *str, int i, int j)
 	int x;
 	char *result;
 	
-	result = (char*)malloc(sizeof(char) * (i - j + 2));
+	result = (char*)malloc(sizeof(char) * (i - j + 3));
 	x = 0;
 	printf("!\n");
 	while (j <= i)
 	{
 		result[x] = str[j];
-		printf("%d: %c \n", x, result[j]);
 		j++;
 		x++;
 	}
-	result[i] = '0';
+	result[j] = '0';
+	printf("%s\n", result);
 	return (result);
 }
 
