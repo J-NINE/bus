@@ -18,7 +18,7 @@ int is_charset(char a, char *charset)
 	while (charset[++i])
 		if(a == charset[i])
 		{
-			printf("%c in charset\n", a);
+		//	printf("%c in charset\n", a);
 			return (1);
 		}
 	return (0);
@@ -35,6 +35,7 @@ char *ft_cut(char *str, int head, int tail)
 		return (NULL);
 	while (head <= tail)
 		result[i++] = str[head++];
+	printf("!%s!\n", result);
 	result[i] = '0';
 	return (result);
 }
@@ -54,20 +55,21 @@ char	**ft_split(char *str, char *charset)
 		if(is_charset(str[i], charset))
 			token_num++;
 	printf("%d", token_num);
-	result = (**char)malloc(sizeof(char*) * token_num + 1);
+	result = (char**)malloc(sizeof(char*) * token_num + 1);
 	
 	tail = 0;
 	head = 0;
 	x = 0;
-	while (str[head])
+	while (str[tail])
 	{
-		if(is_charset(str[head], charset))
+		if(is_charset(str[tail], charset))
 		{
-			result[i] = ft_cut(str, head, head -2);
+			result[i] = (char*)malloc(sizeof(char) * (head - tail + 2));
+			result[i] = ft_cut(str, head, tail);
 			printf("x: %d \t result[x]: %s\t", x, result[x]);
 			x++;
 		}
-		head++;
+		tail++;
 	}
 }
 int	main()
