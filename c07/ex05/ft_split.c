@@ -72,6 +72,7 @@ char	**ft_split(char *str, char *charset)
 		}
 		tail++;
 	}
+	result[x] = ft_cut(str, head, ft_strlen(str) - 1);
 }
 int	main()
 {	char *str = "aaaa:bbbb:cccc+dddd";
