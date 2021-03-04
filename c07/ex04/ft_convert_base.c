@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "ft_convert_base.c"
+//#include "ft_convert_base.c"
 
 int	ft_strlen(char* str)
 {
@@ -41,4 +41,10 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 		return NULL;
 	if(nbr[0] < 0)
 		//minus processing
+}
+
+int	main(void)
+{
+	char c = ft_convert_base("123", "0123456789", "0123456789ABCDEF");
+	return (0);
 }
