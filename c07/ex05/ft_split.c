@@ -42,6 +42,9 @@ char *ft_cut(char *str, int head, int tail)
 char	**ft_split(char *str, char *charset)
 {
 	int i;
+	int x;
+	int head;
+	int tail;
 	int token_num;
 	char **result;
 	
@@ -51,7 +54,21 @@ char	**ft_split(char *str, char *charset)
 		if(is_charset(str[i], charset))
 			token_num++;
 	printf("%d", token_num);
+	result = (**char)malloc(sizeof(char*) * token_num + 1);
 	
+	tail = 0;
+	head = 0;
+	x = 0;
+	while (str[head])
+	{
+		if(is_charset(str[head], charset))
+		{
+			result[i] = ft_cut(str, head, head -2);
+			printf("x: %d \t result[x]: %s\t", x, result[x]);
+			x++;
+		}
+		head++;
+	}
 }
 int	main()
 {	char *str = "aaaa:bbbb:cccc+dddd";
