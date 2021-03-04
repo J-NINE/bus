@@ -35,7 +35,7 @@ char *ft_cut(char *str, int head, int tail)
 		return (NULL);
 	while (head <= tail)
 		result[i++] = str[head++];
-	printf("!%s!\n", result);
+	printf("\nft_cut: %s\t", result);
 	result[i] = '0';
 	return (result);
 }
@@ -67,6 +67,7 @@ char	**ft_split(char *str, char *charset)
 			result[i] = (char*)malloc(sizeof(char) * (head - tail + 2));
 			result[i] = ft_cut(str, head, tail);
 			printf("x: %d \t result[x]: %s\t", x, result[x]);
+			head = tail;
 			x++;
 		}
 		tail++;
