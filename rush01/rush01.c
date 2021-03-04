@@ -24,5 +24,14 @@ int	main(int argc, char **argv)
 		}
 		sight[j][(i % 4) - 1] = argv[i][0] - '0';
 	}
+
+	for(int x = 0; x<4; x++)
+	{
+		for(int y = 0; y<4; y++)
+		{
+			printf("%d ", sight[x][y]);
+		}
+		printf("\n");
+	}
 	return (0);
 }
