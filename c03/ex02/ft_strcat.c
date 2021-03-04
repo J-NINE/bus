@@ -3,21 +3,17 @@
 
 char *ft_strcat(char *dest, char *src)
 {
-    int len, i, j;
-    //len = ft_strlen(dest) + ft_strlen(src);
-    //char *result = malloc((int)sizeof(char) * len);
-
-    i = 0;
-    while (dest[i])
-        i++;
-    j = 0;
-      while (src[j])
-    {
-        dest[i] = src[j];
-        i++;
-    j++;
-    }
-    return(dest);
+	int len, i, j;
+	
+	i = -1;
+	while (dest[++i]);
+	j = -1;
+	while (src[++j])
+	{
+	      dest[i] = src[j];
+	      i++;
+	}
+	return(dest);
 }
 
 int main()

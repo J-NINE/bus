@@ -5,9 +5,8 @@ int	ft_strlen(char *str)
 {
 	int i;
 
-	i = 0;
-	while (str[i])
-		i++;
+	i = -1;
+	while (str[++i]);
 	return (i);
 }
 
@@ -19,13 +18,10 @@ int	ft_strcmp(char *s1, char *s2)
 		return 1;
 	else if (ft_strlen(s1) < ft_strlen(s2))
 		return -1;
-	i = 0;
-	while (s1[i])
-	{
+	i = -1;
+	while (s1[++i])
 		if(s1[i] != s2[i])
 			return (s1[i] > s2[i]);
-		i++;
-	}
 	return (0);
 }
 

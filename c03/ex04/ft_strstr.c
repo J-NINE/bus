@@ -10,9 +10,9 @@ char	*ft_strstr(char *str, char *to_find)
 	while (to_find[++len]);
 	if (len == 0)
 		return (str);
-	i = 0;
+	i = -1;
 	j = 0;
-	while (str[i])
+	while (str[++i])
 	{
 		while (to_find[j] == str[i + j])
 		{
@@ -21,7 +21,6 @@ char	*ft_strstr(char *str, char *to_find)
 			j++;
 		}
 		j = 0;
-		i++;
 	}
 	return (NULL);
 }
