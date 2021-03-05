@@ -30,7 +30,7 @@ void solution(int board[4][4], int row, int col)
 	int col_idx;
 	int n;
 
-	if (row >= 4 && col >= 4)
+	if (row >= 3 && col >= 3)
 	{
 		for(int x = 0; x < 4; x++){
 			for(int y = 0; y<4; y++){
@@ -38,6 +38,7 @@ void solution(int board[4][4], int row, int col)
 			}
 			printf("\n");
 		}
+		return;
 
 	}
 	
@@ -52,10 +53,12 @@ void solution(int board[4][4], int row, int col)
 				if (is_possible(board, row, col_idx, n))
 				{
 					board[row][col_idx] = n;
+					break;
 					//printf("board[%d][%d] = %d\n", row, col_idx, n);
 				}
 		}
 	}
+	printf("\nrow:%d col:%d\n", row, col_idx);
 	for(int x = 0; x < 4; x++)
 	{
 		for(int y = 0; y < 4; y++)
@@ -63,7 +66,9 @@ void solution(int board[4][4], int row, int col)
 		printf("\n");
 	}
 	printf("\n");
-	solution(board, row + 1, 0);
+	if(row < 4 )
+		solution(board, row + 1, 0);
+	return;
 }
 
 int	main(int argc, char **argv)
