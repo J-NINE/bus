@@ -15,7 +15,12 @@ void putboard(int **sight)
 
 }
 
-void print_board(int **sight)
+void write_board(int **board)
+{
+
+}
+
+int**  make_board()
 {
 	int i;
 	int j;
@@ -23,13 +28,14 @@ void print_board(int **sight)
 
 	board = malloc(sizeof(int*) * 4);
 	i = -1;
+	//initialze board
 	while (++i < 16)
 	{
 		if(i%4 == 0)
 			board[i/4] = malloc(sizeof(int) * 5);
-		board[i / 4][i % 4] = sight[i/4][i % 4];
+		board[i / 4][i % 4] = 0;//= sight[i/4][i % 4];
 	}
-	putboard(board);
+	return board;
 }
 
 int	main(int argc, char **argv)
@@ -37,6 +43,7 @@ int	main(int argc, char **argv)
 	int i;
 	int j;
 	int **sight;
+	int **board;
 
 	sight = malloc(sizeof(int*) * 4);
 	i = 0;
@@ -53,6 +60,10 @@ int	main(int argc, char **argv)
 	}
 
 	print_board(sight);
+	board = make_board();
+	print_board(board);
+	write_board(board);
+
 	/*
 	for(int x = 0; x<4; x++)
 	{
