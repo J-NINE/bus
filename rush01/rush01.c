@@ -40,10 +40,13 @@ int	main(int argc, char **argv)
 
 	sight = malloc(sizeof(int*) * 4);
 	i = 0;
-	j = -1;
+	j = -1
+		;
 	if(argc != 17)
 		return (-1);
 	while (argv[++i])
+		//if('0' <= argv[i] && argv <= '9')
+		//return -1;	//ERROE
 	{	if (i % 4 == 1)
 			sight[++j] = malloc(sizeof(int) * 5);
 		sight[j][(i + 3) % 4] = argv[i][0] - '0';
