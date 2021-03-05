@@ -48,15 +48,21 @@ void solution(int board[4][4], int row, int col)
 		if (board[row][col_idx] == 0)
 		{
 			n = -1;
-			while (++n < 4)
-			{
+			while (++n <= 4)
 				if (is_possible(board, row, col_idx, n))
 				{
 					board[row][col_idx] = n;
+					//printf("board[%d][%d] = %d\n", row, col_idx, n);
 				}
-			}
 		}
 	}
+	for(int x = 0; x < 4; x++)
+	{
+		for(int y = 0; y < 4; y++)
+			printf("%d ", board[x][y]);
+		printf("\n");
+	}
+	printf("\n");
 	solution(board, row + 1, 0);
 }
 
