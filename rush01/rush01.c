@@ -15,11 +15,6 @@ void putboard(int **sight)
 
 }
 
-void write_board(int **board)
-{
-
-}
-
 int**  make_board()
 {
 	int i;
@@ -36,6 +31,11 @@ int**  make_board()
 		board[i / 4][i % 4] = 0;//= sight[i/4][i % 4];
 	}
 	return board;
+}
+
+void sudoku(int i)
+{
+	if(idx )
 }
 
 int	main(int argc, char **argv)
@@ -57,12 +57,13 @@ int	main(int argc, char **argv)
 	{	if (i % 4 == 1)
 			sight[++j] = malloc(sizeof(int) * 5);
 		sight[j][(i + 3) % 4] = argv[i][0] - '0';
+
 	}
 
 	print_board(sight);
 	board = make_board();
 	print_board(board);
-	write_board(board);
+//	write_board(board);
 
 	/*
 	for(int x = 0; x<4; x++)
