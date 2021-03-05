@@ -30,12 +30,13 @@ void	print_board(int board[4][4])
 		printf("\n");
 	}
 }
-void solution(int board[4][4], int row, int col)
+void solution(int board[4][4], int row, int col, int ctr;)
 {
 	int col_idx;
 	int n;
 
-	printf("!!%p\n", &board);
+	printf("!!%p, %d\n", &board, ctr);
+	print_board(board);
 	if (row == 4 && col == 4)
 	{
 		printf("\nrow: %d, col: %d\n", row, col);
@@ -54,20 +55,20 @@ void solution(int board[4][4], int row, int col)
 				if (is_possible(board, row, col_idx, n))
 				{
 					board[row][col_idx] = n;
-					solution(board, row, col_idx);
+					solution(board, row, col_idx, ctr + 1);
 					print_board(board);
 					//printf("board[%d][%d] = %d\n", row, col_idx, n);
 				}
 		}
 	}
 	if(row < 4 )
-		solution(board, row + 1, 0);
+		solution(board, row + 1, 0, ctr);
 	
 		return;
 }
 int	main(int argc, char **argv)
 {
-	int board[4][4] = {{0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
-	solution(board, 0, 0);
+	int board[4][4] = {{0, 4, 0, 0}, {0, 3, 0, 0}, {0, 2, 0, 0}, {0, 1, 0, 0}};
+	solution(board, 0, 0, 0);
 	return (0);
 }
