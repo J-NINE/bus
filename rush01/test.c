@@ -19,6 +19,7 @@ int	is_possible(int board[4][4], int i, int j, int n)
 	int idx = -1;
 	while (++idx < 4 )
 	{
+
 		if (n == board[i][idx] || n == board[idx][j])
 			return 0;
 	}
@@ -35,10 +36,16 @@ void	print_board(int board[4][4])
 	}
 }
 
-void solution(int board[4][4], int row, int col)
+
+
+void solution(int org_board[4][4], int row, int col)
 {
 	int col_idx;
 	int n;
+	int temp[4][4] = {0, };
+	int i;
+	int j;
+	
 	printf("\n=====row:%d, col:%d=====\n", row, col);
 	print_board(board);
 	if (row >= 4 && col >= 4)
@@ -62,7 +69,9 @@ void solution(int board[4][4], int row, int col)
 			{
 				if (is_possible(board, row, col_idx, n))
 				{
-					board[row][col_idx] = n;
+					//cp org_board -> temp : temp[row][col_idx] = n;								
+					//board[row][col_idx] = n;
+				
 					solution(board, row, col_idx);
 				}
 			}
