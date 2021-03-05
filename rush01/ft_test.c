@@ -30,7 +30,7 @@ void	print_board(int board[4][4])
 		printf("\n");
 	}
 }
-void solution(int board[4][4], int row, int col, int ctr;)
+void solution(int board[4][4], int row, int col, int ctr)
 {
 	int col_idx;
 	int n;
@@ -44,7 +44,7 @@ void solution(int board[4][4], int row, int col, int ctr;)
 		return;
 	}
 	
-	col_idx = -1;
+	col_idx = col -1;
 	while (++col_idx < 4)
 	{
 		//if currnt box empty
