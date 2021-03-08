@@ -1,0 +1,5 @@
+Credentials cache: API:28911723-5497-4F66-8CE7-033D4C8FB173
+        Principal: gojung@42SEOUL.KR
+
+  Issued                Expires               Principal
+Feb 15 15:17:30 2021  Feb 16 01:17:30 2021  krbtgt/42SEOUL.KR@42SEOUL.KR
