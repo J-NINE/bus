@@ -1,7 +1,18 @@
-#include <stdio.h>
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gojung <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/09 05:47:02 by gojung            #+#    #+#             */
+/*   Updated: 2021/03/09 06:14:51 by gojung           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int ft_atoi(char *str)
+#include <stdio.h>
+
+int	ft_atoi(char *str)
 {
 	int result;
 	int i;
@@ -18,8 +29,11 @@ int ft_atoi(char *str)
 			minus *= (-1);
 		i++;
 	}
-	while (str[i] && str[i] >= '0' && str[i] <= '9')
-		result = (result * 10) + str[i++] - '0';
+	while (str[i] && (str[i] >= '0') && (str[i] <= '9'))
+	{
+		result *= 10;
+		result += (str[i] - '0');
+	}
 	return (minus * result);
 }
 
@@ -27,23 +41,24 @@ int	is_valid(char *base)
 {
 	int i;
 	int j;
-	
-	i = -1;
-	while (base[++i])
+
+	i = 0;
+	while (base[i])
 	{
-		if(base[i] == '+' || base[i] == '-' || base[i] == ' ')
-			return 0;
+		if (base[i] == '+' || base[i] == '-' || base[i] == ' ')
+			return (0);
 		j = i + 1;
 		while (base[j])
 		{
-			if(base[i] == base[j])
-				return 0;
+			if (base[i] == base[j])
+				return (0);
 			j++;
 		}
+		i++;
 	}
-	if(i == 0 || i == 1)
-		return 0;
-	return 1;
+	if (i <= 1)
+		return (0);
+	return (1);
 }
 
 int	ft_atoi_base(char *str, char *base)
@@ -52,6 +67,7 @@ int	ft_atoi_base(char *str, char *base)
 	int base_i;
 	int result[100];
 	int i;
+	int answer;
 
 	nbr = ft_atoi(str);
 	if (is_valid(base))
@@ -61,21 +77,24 @@ int	ft_atoi_base(char *str, char *base)
 			nbr *= (-1);
 			write(1, "-", 1);
 		}
-		base_i = -1;
-		while (base[++base_i]);
-		i = 0;
+		base_i = 0;
+		while (base[base_i])
+			base_i++;
+		i = -1;
 		while (nbr)
 		{
-			result[i] = nbr % base_i;
-			nbr = nbr / base_i;
-			i++;
+			result[++i] = nbr % base_i;
+			nbr /= base_i;
 		}
+		answer = 0;
 		while (--i >= 0)
-			write(1, &base[result[i]], 1);
+		{
+			answer = answer * 10 + result[i];
+		}
 	}
 }
 
 int	main(void)
 {
-	//printf("%d ", ft_atoi("     ---+--2412a"));
+	printf("%d ", ft_atoi_base("17", "0123456789abcdef"));
 }

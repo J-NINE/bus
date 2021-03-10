@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gojung <gojung@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/06 12:23:59 by gojung            #+#    #+#             */
+/*   Updated: 2021/03/09 05:09:47 by gojung           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 
 void	ft_putstr(char *str)
@@ -6,14 +18,5 @@ void	ft_putstr(char *str)
 
 	i = -1;
 	while (str[++i])
-	{
 		write(1, &str[i], 1);
-	}
-}
-
-int	main(void)
-{
-	char *str = "gojung";
-	ft_putstr(str);
-	return 0;
 }
