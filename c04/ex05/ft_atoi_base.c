@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gojung <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: gojung <gojung@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/09 05:47:02 by gojung            #+#    #+#             */
-/*   Updated: 2021/03/09 06:14:51 by gojung           ###   ########.fr       */
+/*   Created: 2021/03/10 22:11:59 by gojung            #+#    #+#             */
+/*   Updated: 2021/03/10 22:23:05 by gojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_atoi(char *str)
+int		ft_atoi(char *str)
 {
 	int result;
 	int i;
@@ -30,22 +28,20 @@ int	ft_atoi(char *str)
 		i++;
 	}
 	while (str[i] && (str[i] >= '0') && (str[i] <= '9'))
-	{
-		result *= 10;
-		result += (str[i] - '0');
-	}
+		result = (result * 10) + str[i++] - '0';
 	return (minus * result);
 }
 
-int	is_valid(char *base)
+int		is_valid(char *base)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (base[i])
 	{
-		if (base[i] == '+' || base[i] == '-' || base[i] == ' ')
+		if (base[i] == '-' || base[i] == '+' || base[i] == ' '
+				|| base[i] < 32 || base[i] > 126)
 			return (0);
 		j = i + 1;
 		while (base[j])
@@ -56,45 +52,56 @@ int	is_valid(char *base)
 		}
 		i++;
 	}
-	if (i <= 1)
+	if (i == 0 || i == 1)
 		return (0);
 	return (1);
 }
 
-int	ft_atoi_base(char *str, char *base)
+int		ft_strlen(char *base)
 {
-	int nbr;
-	int base_i;
-	int result[100];
 	int i;
-	int answer;
 
-	nbr = ft_atoi(str);
-	if (is_valid(base))
-	{
-		if (nbr < 0)
-		{
-			nbr *= (-1);
-			write(1, "-", 1);
-		}
-		base_i = 0;
-		while (base[base_i])
-			base_i++;
-		i = -1;
-		while (nbr)
-		{
-			result[++i] = nbr % base_i;
-			nbr /= base_i;
-		}
-		answer = 0;
-		while (--i >= 0)
-		{
-			answer = answer * 10 + result[i];
-		}
-	}
+	i = 0;
+	while (base[i])
+		i++;
+	return (i);
 }
 
-int	main(void)
+int		ft_nbr_base(int nbr, char *base)
 {
-	printf("%d ", ft_atoi_base("17", "0123456789abcdef"));
+	long	nbr_long;
+	char	result[32];
+	int		i;
+	int		minus;
+	int		total;
+
+	minus = 1;
+	nbr_long = nbr;
+	if (nbr < 0)
+	{
+		nbr_long *= (-1);
+		minus *= (-1);
+	}
+	i = 0;
+	while (nbr_long > 0)
+	{
+		result[i++] = base[nbr_long % ft_strlen(base)];
+		nbr_long /= ft_strlen(base);
+	}
+	total = 0;
+	while (i--)
+		total = (total * 10) + (result[i] - '0');
+	return (total * minus);
+}
+
+int		ft_atoi_base(char *str, char *base)
+{
+	int nbr;
+
+	if (is_valid(base))
+	{
+		nbr = ft_atoi(str);
+		return (ft_nbr_base(nbr, base));
+	}
+	return (0);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gojung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/09 05:19:23 by gojung            #+#    #+#             */
-/*   Updated: 2021/03/09 05:20:59 by gojung           ###   ########.fr       */
+/*   Created: 2021/03/10 21:30:47 by gojung            #+#    #+#             */
+/*   Updated: 2021/03/10 22:23:36 by gojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int		is_valid(char *base)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (base[i])
 	{
-		if (base[i] == '+' || base[i] == '-' || base[i] == ' ')
+		if (base[i] == '-' || base[i] == '+' || base[i] < 32 || base[i] > 126)
 			return (0);
 		j = i + 1;
 		while (base[j])
@@ -36,35 +36,31 @@ int		is_valid(char *base)
 	return (1);
 }
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
 void	ft_putnbr_base(int nbr, char *base)
 {
-	int	base_i;
-	int	result[100];
-	int	i;
+	long	nbr_long;
+	char	result[32];
+	int		base_length;
+	int		i;
 
-	i = 0;
-	if (is_valid(base))
+	if (!is_valid(base))
+		return ;
+	base_length = 0;
+	while (base[base_length])
+		base_length++;
+	nbr_long = nbr;
+	if (nbr < 0)
 	{
-		if (nbr < 0)
-		{
-			nbr *= (-1);
-			ft_putchar('-');
-		}
-		base_i = 0;
-		while (base[base_i])
-			base_i++;
-		while (nbr)
-		{
-			result[i] = nbr % base_i;
-			nbr = nbr / base_i;
-			i++;
-		}
-		while (--i >= 0)
-			ft_putchar(base[result[i]]);
+		nbr_long *= (-1);
+		write(1, "-", 1);
 	}
+	i = 0;
+	while (nbr_long > 0)
+	{
+		result[i] = base[nbr_long % base_length];
+		nbr_long /= base_length;
+		i++;
+	}
+	while (--i >= 0)
+		write(1, &result[i], 1);
 }
