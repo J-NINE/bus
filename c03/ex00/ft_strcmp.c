@@ -1,32 +1,27 @@
-//	s1<s2: -1, s1=s2: 0, s1>s2: 1
-#include <stdio.h>
-
-int	ft_strlen(char *str)
-{
-	int i;
-
-	i = -1;
-	while (str[++i]);
-	return (i);
-}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gojung <gojung@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/06 11:25:25 by gojung            #+#    #+#             */
+/*   Updated: 2021/03/09 04:47:56 by gojung           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 int	ft_strcmp(char *s1, char *s2)
 {
-	int i;
+	unsigned int i;
 
-	if(ft_strlen(s1) > ft_strlen(s2))
-		return 1;
-	else if (ft_strlen(s1) < ft_strlen(s2))
-		return -1;
-	i = -1;
-	while (s1[++i])
-		if(s1[i] != s2[i])
-			return (s1[i] > s2[i]);
+	i = 0;
+	while (s1[i] && s2[i])
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
+	}
+	if ((s1[i] && !s2[i]) || (!s1[i] && s2[i]))
+		return (s1[i] - s2[i]);
 	return (0);
-}
-
-int	main(void)
-{
-	printf("%d ", ft_strcmp("ooah", "Gooah"));
-	return 0;
 }

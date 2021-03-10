@@ -1,35 +1,34 @@
-#include  <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gojung <gojung@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/06 12:19:23 by gojung            #+#    #+#             */
+/*   Updated: 2021/03/09 05:07:31 by gojung           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 char	*ft_strstr(char *str, char *to_find)
 {
-	int len;
-	int i;
-	int j;
+	unsigned int i;
+	unsigned int position;
 
-	len = -1;
-	while (to_find[++len]);
-	if (len == 0)
+	if (!to_find)
 		return (str);
-	i = -1;
-	j = 0;
-	while (str[++i])
+	position = 0;
+	while (str[position])
 	{
-		while (to_find[j] == str[i + j])
+		if (str[position] == to_find[0])
 		{
-			if (j + 1 == len)
-				return (str + i);
-			j++;
+			i = 1;
+			while (to_find[i]  && (str[position + i] == to_find[i]))
+				++i;
+			if (!to_find[i])
+				return (&str[position]);
 		}
-		j = 0;
+		position++;
 	}
-	return (NULL);
-}
-
-int	main()
-{
-	char str[] = "abcDEFghijklmDEFnopqrstuvwxyz";
-	//char fnd[] = "";
-	char fnd[] = "DEF";
-	printf("%s", ft_strstr(str, fnd));
 	return (0);
 }

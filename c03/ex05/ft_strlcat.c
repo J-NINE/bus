@@ -1,5 +1,14 @@
-#include <stdio.h>
-#include <bsd/string.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gojung <gojung@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/06 12:20:24 by gojung            #+#    #+#             */
+/*   Updated: 2021/03/09 05:08:52 by gojung           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {
@@ -7,10 +16,12 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 	unsigned int j;
 	unsigned int result;
 
-	dest_i = -1;
-	while (dest[++dest_i]);
-	result = -1;
-	while (src[++result]);
+	dest_i = 0;
+	while (dest[dest_i])
+		dest_i++;
+	result = 0;
+	while (src[result])
+		result++;
 	if (size <= dest_i)
 		result += size;
 	else
@@ -24,20 +35,4 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 	}
 	dest[dest_i] = '\0';
 	return (result);
-}
-
-int main(void)
-{
-	const char src1[10]	= "ab";
-	char dest1[10] = "123";
-
-	char src[10] = "ab";
-	char dest[10] = "123";
-
-	//size_t  nb = 2;
-	unsigned int size_2 = 2;
-	//strcat(src, dest);
-//	printf("%ld \n", strlcat(dest1, src1, nb));
-	printf("%d", ft_strlcat(dest, src, size_2));
-	return (0);
 }

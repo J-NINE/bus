@@ -1,21 +1,27 @@
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gojung <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/06 11:30:58 by gojung            #+#    #+#             */
+/*   Updated: 2021/03/09 04:48:08 by gojung           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 int	ft_strncmp(char *s1, char *s2, unsigned int n)
 {
-	int i;
+	unsigned int i;
 
 	i = 0;
-	while (s1[i] && s2[i] && n--)
+	while (s1[i] && s2[i] && i < n)
 	{
-		if(s1[i] != s2[i])
-			return (s1[i] > s2[i]);
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
 		i++;
 	}
-	return (0);
-}
-
-int	main(void)
-{
-	printf("%d ", ft_strncmp("Gooah", "GooahJung", 6));
+	if ((i < n) && ((!s1[i] && s2[i]) || (!s2[i] && s1[i])))
+		return (s1[i] - s2[i]);
 	return (0);
 }
