@@ -1,32 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_sort_params.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gojung <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/13 18:25:30 by gojung            #+#    #+#             */
+/*   Updated: 2021/03/13 23:10:37 by gojung           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 
-int	ft_strcmp(char *s1, char *s2)
+void	print_argv(int argc, char **argv)
 {
 	int i;
-	int length_1;
-	int length_2;
+	int j;
 
-	length_1 = -1;
-	while (s1[++length_1]);
-	length_2 = -1;
-	while (s2[length_2]);
-	if (length_1 > length_2)
-		return (1);
-	else if(length_1 < length_2)
-		return (-1);
-	i = -1;
-	while (s1[++i])
+	i = 0;
+	while (++i < argc)
+	{
+		j = -1;
+		while (argv[i][++j])
+			write(1, &argv[i][j], 1);
+		write(1, "\n", 1);
+	}
+}
+
+int		ft_strcmp(char *s1, char *s2)
+{
+	unsigned int i;
+
+	i = 0;
+	while (s1[i] && s2[i])
+	{
 		if (s1[i] != s2[i])
-			return (s1[i] > s2[i]);
+			return (s1[i] - s2[i]);
+		i++;
+	}
+	if ((s1[i] && !s2[i]) || (!s1[i] && s2[i]))
+		return (s1[i] - s2[i]);
 	return (0);
 }
 
-int     main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-
+	char *temp;
 	int i;
 	int j;
-	char *temp;
 
 	i = 0;
 	while (++i < argc - 1)
@@ -42,14 +63,6 @@ int     main(int argc, char **argv)
 			}
 		}
 	}
-
-	i = 0;
-	while (++i < argc)
-	{
-		j = -1;
-		while (argv[i][++j])
-			write(1, &argv[i][j], 1);
-		write(1, "\n", 1);
-	}
+	print_argv(argc, argv);
 	return (0);
 }
